@@ -65,4 +65,16 @@
     }
   }
 
+  @layer utilities {
+    /* Chrome, Opera, Safari */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    /* Edge, Firefox, IE */
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  }
+
   @import "~@uploadthing/react/styles.css";

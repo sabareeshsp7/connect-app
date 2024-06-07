@@ -58,9 +58,9 @@ const Message = ({
           ) : null}
           {type === "file" ? <FilePreview url={content[0]} /> : null}
           {type === "image" ? <ImagePreview urls={content} /> : null}
-          {type === "call" ? (
+          {/* {type === "call" ? (
             <Badge variant="secondary">Joined Call</Badge>
-          ) : null}
+          ) : null} */}
           <p
             className={cn(`text-xs flex w-full my-1`, {
               "text-primary-foreground justify-end": fromCurrentUser,

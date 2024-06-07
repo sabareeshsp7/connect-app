@@ -23,11 +23,11 @@ type Props = {
     username?: string;
     [key: string]: any;
   }[];
-  callType: "audio" | "video" | null;
-  setCallType: Dispatch<SetStateAction<"audio" | "video" | null>>;
+  // callType: "audio" | "video" | null;
+  // setCallType: Dispatch<SetStateAction<"audio" | "video" | null>>;
 };
 
-const Body = ({ members, callType, setCallType }: Props) => {
+const Body = ({ members,}: Props) => {
   const { conversationId } = useConversation();
 
   const messages = useQuery(api.messages.get, {
@@ -92,7 +92,7 @@ const Body = ({ members, callType, setCallType }: Props) => {
 
   return (
     <div className="flex-1 w-full flex overflow-y-scroll flex-col-reverse gap-2 p-3 no-scrollbar">
-      {!callType ? (
+      { (
         messages?.map(
           ({ message, senderImage, senderName, isCurrentUser }, index) => {
             const lastByUser =
@@ -116,14 +116,8 @@ const Body = ({ members, callType, setCallType }: Props) => {
             );
           }
         )
-      ) : (
-        <></>
-        // <CallRoom
-        //   audio={callType === "audio" || callType === "video"}
-        //   video={callType === "video"}
-        //   handleDisconnect={() => setCallType(null)}
-        // />
       )}
+      
     </div>
   );
 };

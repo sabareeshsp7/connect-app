@@ -20,10 +20,10 @@ type Props = {
     destructive: boolean;
     onClick: () => void;
   }[];
-  setCallType: Dispatch<SetStateAction<"audio" | "video" | null>>;
+  // setCallType: Dispatch<SetStateAction<"audio" | "video" | null>>;
 };
 
-const Header = ({ imageUrl, name, options, setCallType }: Props) => {
+const Header = ({ imageUrl, name, options, }: Props) => {
   return (
     <Card className="w-full flex rounded-lg items-center p-2 justify-between">
       <div className="flex items-center gap-2">
@@ -37,20 +37,20 @@ const Header = ({ imageUrl, name, options, setCallType }: Props) => {
         <h2 className="font-semibold">{name}</h2>
       </div>
       <div className="flex gap-2">
-        <Button
+        {/* <Button
           variant="secondary"
           size="icon"
           onClick={() => setCallType("audio")}
         >
           <Phone />
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           variant="secondary"
           size="icon"
           onClick={() => setCallType("video")}
         >
           <Video />
-        </Button>
+        </Button> */}
         {options ? (
           <DropdownMenu>
             <DropdownMenuTrigger>

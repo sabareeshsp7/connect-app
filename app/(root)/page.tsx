@@ -1,7 +1,7 @@
-import { UserButton } from "@clerk/nextjs";
+import SidebarWrapper from "@/components/shared/sidebar/SidebarWrapper";
 
-export default function Home() {
-  return (
-    null
-  );
+type Props = React.PropsWithChildren<{}>;
+
+export default function Layout({ children }: Props) {
+  return <SidebarWrapper>{children}</SidebarWrapper>;
 }
