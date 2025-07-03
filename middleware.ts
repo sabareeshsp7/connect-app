@@ -1,12 +1,18 @@
 import { clerkMiddleware, createRouteMatcher} from '@clerk/nextjs/server';
 
-const isProtectedRoute = createRouteMatcher([ '/(.*)', ]);
+const isProtectedRoute = createRouteMatcher([
+  '/conversations(.*)',
+  '/friends(.*)',
+  '/ai-chat(.*)',
+]);
+
 const isPublicApiRoute = createRouteMatcher(['/api/uploadthing']);
 
 export default clerkMiddleware(async (auth, req) => {
   // Allow AI chat API for authenticated users only
   if (req.nextUrl.pathname === '/api/ai-chat') {
-    return; // Let it through without protection check
+    await auth().protect();
+    return;
   }
   
   if (isProtectedRoute(req) && !isPublicApiRoute(req)) {
@@ -14,5 +20,7 @@ export default clerkMiddleware(async (auth, req) => {
   }
 });
 
-export const config = { matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],};
+export const config = { 
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+};
 

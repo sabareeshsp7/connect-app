@@ -104,70 +104,71 @@ const AIChatPage = () => {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <Card className="flex-1 flex flex-col h-[calc(100vh-120px)] lg:h-full">
+      {/* Mobile and Desktop responsive card with proper mobile nav spacing */}
+      <Card className="flex-1 flex flex-col h-[calc(100vh-240px)] lg:h-full max-h-[calc(100vh-240px)] lg:max-h-full m-2 lg:m-0">
         {/* Header */}
-        <div className="flex items-center gap-3 p-4 border-b">
-          <Avatar className="h-10 w-10">
+        <div className="flex items-center gap-3 p-3 lg:p-4 border-b flex-shrink-0">
+          <Avatar className="h-8 w-8 lg:h-10 lg:w-10">
             <AvatarFallback className="bg-primary text-primary-foreground">
-              <Bot className="h-5 w-5" />
+              <Bot className="h-4 w-4 lg:h-5 lg:w-5" />
             </AvatarFallback>
           </Avatar>
           <div>
-            <h2 className="font-semibold">AI Assistant</h2>
-            <p className="text-sm text-muted-foreground">
+            <h2 className="font-semibold text-sm lg:text-base">AI Assistant</h2>
+            <p className="text-xs lg:text-sm text-muted-foreground">
               Powered by Gemini AI
             </p>
           </div>
         </div>
 
-        {/* Messages */}
-        <ScrollArea className="flex-1 p-4">
-          <div className="space-y-4">
+        {/* Messages - Scrollable area */}
+        <ScrollArea className="flex-1 p-3 lg:p-4 min-h-0">
+          <div className="space-y-3 lg:space-y-4 pb-6 lg:pb-4">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex gap-3 ${
+                className={`flex gap-2 lg:gap-3 ${
                   message.isUser ? "justify-end" : "justify-start"
                 }`}
               >
                 {!message.isUser && (
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-6 w-6 lg:h-8 lg:w-8 flex-shrink-0">
                     <AvatarFallback className="bg-primary text-primary-foreground">
-                      <Bot className="h-4 w-4" />
+                      <Bot className="h-3 w-3 lg:h-4 lg:w-4" />
                     </AvatarFallback>
                   </Avatar>
                 )}
                 <div
-                  className={`max-w-[70%] rounded-lg px-4 py-2 ${
+                  className={`max-w-[80%] lg:max-w-[70%] rounded-lg px-3 py-2 lg:px-4 lg:py-2 ${
                     message.isUser
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted"
                   }`}
                 >
-                  <p className="text-sm">{message.content}</p>
+                  <p className="text-sm lg:text-sm leading-relaxed break-words whitespace-pre-wrap">{message.content}</p>
                   <p className="text-xs opacity-70 mt-1">
                     {formatTime(message.timestamp)}
                   </p>
                 </div>
                 {message.isUser && (
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-6 w-6 lg:h-8 lg:w-8 flex-shrink-0">
                     <AvatarFallback className="bg-secondary text-secondary-foreground">
-                      <User className="h-4 w-4" />
+                      <User className="h-3 w-3 lg:h-4 lg:w-4" />
                     </AvatarFallback>
                   </Avatar>
                 )}
               </div>
             ))}
             {isLoading && (
-              <div className="flex gap-3 justify-start">
-                <Avatar className="h-8 w-8">
+              <div className="flex gap-2 lg:gap-3 justify-start">
+                <Avatar className="h-6 w-6 lg:h-8 lg:w-8 flex-shrink-0">
                   <AvatarFallback className="bg-primary text-primary-foreground">
-                    <Bot className="h-4 w-4" />
+                    <Bot className="h-3 w-3 lg:h-4 lg:w-4" />
                   </AvatarFallback>
                 </Avatar>
-                <div className="bg-muted rounded-lg px-4 py-2">
+                <div className="bg-muted rounded-lg px-3 py-2 lg:px-4 lg:py-2">
                   <div className="flex items-center gap-2">
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-3 w-3 lg:h-4 lg:w-4 animate-spin" />
                     <span className="text-sm">AI is thinking...</span>
                   </div>
                 </div>
@@ -177,18 +178,22 @@ const AIChatPage = () => {
           <div ref={messagesEndRef} />
         </ScrollArea>
 
-        {/* Input */}
-        <div className="p-4 border-t">
+        {/* Input - Fixed at bottom with proper spacing for mobile nav */}
+        <div className="p-3 lg:p-4 border-t flex-shrink-0 bg-background/95 backdrop-blur-sm">
           <form onSubmit={sendMessage} className="flex gap-2">
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               placeholder="Type your message..."
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 text-sm lg:text-base h-9 lg:h-10"
             />
-            <Button type="submit" disabled={isLoading || !inputMessage.trim()}>
-              <Send className="h-4 w-4" />
+            <Button 
+              type="submit" 
+              disabled={isLoading || !inputMessage.trim()}
+              className="h-9 w-9 lg:h-10 lg:w-10 p-0 flex-shrink-0"
+            >
+              <Send className="h-3 w-3 lg:h-4 lg:w-4" />
             </Button>
           </form>
         </div>
