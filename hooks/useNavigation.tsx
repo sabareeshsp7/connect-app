@@ -1,6 +1,6 @@
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
-import { MessageSquare, Users } from "lucide-react";
+import { MessageSquare, Users, Bot } from "lucide-react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
@@ -31,6 +31,13 @@ export const useNavigation = () => {
         icon: <Users />,
         active: pathname === "/friends",
         count: requestsCount,
+      },
+      {
+        name: "AI Chat",
+        href: "/ai-chat",
+        icon: <Bot />,
+        active: pathname === "/ai-chat",
+        count: undefined,
       },
     ],
     [pathname, requestsCount, unseenMessagesCount]

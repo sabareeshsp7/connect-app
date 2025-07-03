@@ -45,6 +45,12 @@ A modern, feature-rich real-time chat application built with Next.js 14, React, 
 - **Video Calls** with screen sharing support
 - **Call Room** management
 - **Real-time Audio/Video** streaming
+
+### 🤖 AI Features
+- **AI Chat Assistant** powered by Google Gemini
+- **Natural Language Processing** for intelligent conversations
+- **Real-time AI Responses** with typing indicators
+- **Seamless Integration** with existing chat interface
 ## 🛠 Technology Stack
 
 ### Frontend
@@ -106,6 +112,9 @@ CONVEX_DEPLOYMENT=your_convex_deployment
 # UploadThing
 UPLOADTHING_SECRET=your_uploadthing_secret
 UPLOADTHING_APP_ID=your_uploadthing_app_id
+
+# Gemini AI (for AI Chat feature)
+GEMINI_API_KEY=your_gemini_api_key
 
 # LiveKit (Optional for video calls)
 LIVEKIT_API_KEY=your_livekit_api_key
@@ -206,6 +215,12 @@ connect-app/
 1. Create an account at [uploadthing.com](https://uploadthing.com)
 2. Create a new app and get your API keys
 3. Configure file upload settings
+
+### Gemini AI Setup
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Create a new API key for Gemini
+3. Add the API key to your `.env.local` file as `GEMINI_API_KEY`
+4. The AI chat feature will be available in the navigation
 
 ## 🚀 Deployment
 
