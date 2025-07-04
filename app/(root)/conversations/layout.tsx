@@ -30,7 +30,7 @@ const ConversationsLayout = ({ children }: Props) => {
         </div>
 
         {/* Conversations List with smooth scrolling */}
-        <div className="w-full flex-1 overflow-y-auto min-h-0 scrollbar-thin scrollbar-thumb-muted scrollbar-track-transparent">
+        <div className="w-full flex-1 overflow-y-auto min-h-0 no-scrollbar">
           {conversations ? (
             <>
               {/* Show search results info */}

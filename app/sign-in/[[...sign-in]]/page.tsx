@@ -8,12 +8,12 @@ import { Badge } from "@/components/ui/badge";
 
 const SignInPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      <div className="container mx-auto px-4 py-4 lg:py-8">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto min-h-screen">
+    <div className="auth-page-container auth-full-height auth-container-safe bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="auth-content-wrapper auth-content-safe auth-container-mobile">
+        <div className="auth-grid-safe auth-grid-responsive grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto auth-container-large">
           
           {/* Left Side - Features Showcase */}
-          <div className="space-y-6 order-2 lg:order-1">
+          <div className="space-y-6 auth-order-mobile-second lg:order-1">
             {/* Header */}
             <div className="text-center lg:text-left space-y-4">
               <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
@@ -24,10 +24,10 @@ const SignInPage = () => {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <h1 className="auth-title-responsive font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     Connect
                   </h1>
-                  <p className="text-sm text-muted-foreground">Real-Time Chat Platform</p>
+                  <p className="auth-subtitle-responsive text-muted-foreground">Real-Time Chat Platform</p>
                 </div>
               </div>
               

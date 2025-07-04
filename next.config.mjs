@@ -1,16 +1,14 @@
-import withPWA from "./lib/next-pwa-wrapper.cjs";
-
 /** @type {import('next').NextConfig} */
 
-    const nextConfig = {
-        compiler: {
-          removeConsole: process.env.NODE_ENV !== "development",
-        },
-        reactStrictMode: true, // Better error handling
-        swcMinify: true, // Better performance
-        images: {
-          domains: ["img.clerk.com", "utfs.io"],
-        },
+const nextConfig = {
+    compiler: {
+        removeConsole: process.env.NODE_ENV !== "development",
+    },
+    reactStrictMode: true,
+    swcMinify: true,
+    images: {
+        domains: ["img.clerk.com", "utfs.io"],
+    },
     async redirects() {
         return [
             {
@@ -22,11 +20,4 @@ import withPWA from "./lib/next-pwa-wrapper.cjs";
     }
 };
 
-const PWAWrapper = withPWA({
-    dest: "public",
-    disable: process.env.NODE_ENV === "development",
-    register: true,
-    skipWaiting: true,
-  });
-
-export default PWAWrapper(nextConfig);
+export default nextConfig;
