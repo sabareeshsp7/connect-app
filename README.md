@@ -1,5 +1,5 @@
 
-# Connect -### 💬 Real-Time Communication
+# Connect💬- Real-Time Communication
 - **Instant Messaging** with r### � Rich Media Support
 - **File Uploads** (images, videos, PDFs, audio)
 - **Image Preview** with full-screen view
@@ -76,7 +76,7 @@ A modern, feature-rich real-time chat application built with Next.js 14, React, 
 - **Typing Indicators** for active conversations
 - **Emoji Support** with built-in emoji picker
 
-### � Social Features
+### Social Features
 - **Friend System** with request/accept flow
 - **User Discovery** by email address
 - **Friend Management** (add, remove, block)
@@ -92,7 +92,7 @@ A modern, feature-rich real-time chat application built with Next.js 14, React, 
 - **Smooth Scrolling** conversation lists with proper mobile navigation handling
 - **Mobile-First Layout** with touch-friendly interfaces
 
-### � Rich Media Support
+### Rich Media Support
 - **File Uploads** (images, videos, PDFs, audio)
 - **Image Preview** with full-screen view
 - **Video Playback** with controls
