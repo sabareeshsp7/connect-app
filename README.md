@@ -1,6 +1,6 @@
 
 # Connect💬- Real-Time Communication
-- **Instant Messaging** with r### � Rich Media Support
+- **Instant Messaging** with Rich Media Support
 - **File Uploads** (images, videos, PDFs, audio)
 - **Image Preview** with full-screen view
 - **Video Playback** with controls
