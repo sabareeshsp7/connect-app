@@ -1,6 +1,16 @@
 # Connect Chat Application 💬
 
+<<<<<<< HEAD
 A modern, real-time chat application built with Next.js, Convex, and Clerk authentication. Connect with friends, create groups, and enjoy AI-powered conversations.
+=======
+# Connect💬- Real-Time Communication
+- **Instant Messaging** with Rich Media Support
+- **File Uploads** (images, videos, PDFs, audio)
+- **Image Preview** with full-screen view
+- **Video Playback** with controls
+- **File Download** capabilities
+- **Drag & Drop** file uploads
+>>>>>>> origin/main
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-14.2.3-black.svg)
@@ -57,6 +67,7 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 - **Error Resolution** - Fixed reply functionality and validation errors
 - **Mobile Optimization** - Better performance on mobile devices
 
+<<<<<<< HEAD
 ### User Experience Improvements ✅
 - **Intuitive Message Actions** - Reply, Copy, Share, Info, AI Reply, Delete
 - **Real-time Status Updates** - Live delivery and read receipts
@@ -64,6 +75,84 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 - **Smooth Reply System** - Fixed reply validation and message sending
 
 ## 🛠 Tech Stack
+=======
+### Social Features
+- **Friend System** with request/accept flow
+- **User Discovery** by email address
+- **Friend Management** (add, remove, block)
+- **Group Creation** with friend selection
+- **Conversation Management** (leave, delete groups)
+
+### 📱 User Experience
+- **Fully Responsive Design** optimized for mobile and desktop
+- **Dark/Light Theme** with system preference detection
+- **PWA Support** for native app-like experience
+- **Offline Capability** with service worker
+- **Toast Notifications** for user feedback
+- **Smooth Scrolling** conversation lists with proper mobile navigation handling
+- **Mobile-First Layout** with touch-friendly interfaces
+
+### Rich Media Support
+- **File Uploads** (images, videos, PDFs, audio)
+- **Image Preview** with full-screen view
+- **Video Playback** with controls
+- **File Download** capabilities
+- **Drag & Drop** file uploads
+
+### 🎥 Communication Features
+- **Voice Calls** with LiveKit integration
+- **Video Calls** with screen sharing support
+- **Call Room** management
+- **Real-time Audio/Video** streaming
+
+### 🤖 AI Features
+- **AI Chat Assistant** powered by Google Gemini
+- **Natural Language Processing** for intelligent conversations
+- **Real-time AI Responses** with typing indicators
+- **Mobile-Optimized AI Interface** - Perfect layout on all devices
+- **Seamless Integration** with existing chat interface
+- **Auto-scroll** for smooth conversation flow
+- **Loading Indicators** for AI thinking states
+- **Error Handling** with user-friendly messages
+## 🆕 Recent Updates
+
+### AI Chat Integration
+- Added **Google Gemini-powered AI Assistant** accessible from the sidebar
+- **Bot icon** in navigation for easy access to AI chat
+- **Mobile-responsive AI interface** with proper spacing and layout
+- **Real-time AI responses** with typing indicators and error handling
+
+### Enhanced Search Functionality
+- **Member search bar** above conversations list
+- **Real-time filtering** as you type usernames or group names
+- **Keyboard shortcuts** (Ctrl+K/Cmd+K) for quick search access
+- **Search results counter** showing number of matches
+- **Mobile-optimized search** with touch-friendly interface
+
+### Improved Mobile Experience
+- **Fixed mobile navigation overlap** issues
+- **Proper spacing** for AI chat on mobile devices
+- **Smooth scrolling** conversation lists
+- **Touch-optimized** search and chat interfaces
+- **Responsive layout** improvements across all components
+
+### Performance & UX Enhancements
+- **Error handling** improvements for AI chat
+- **Loading states** for better user feedback
+- **Auto-scroll** functionality for chat messages
+- **Type-safe** search implementation with robust error handling
+
+### New Beautiful Pages & Design System
+- **Landing Page Redesign** with stunning hero section and feature showcase
+- **Custom Sign-In Page** with rotating testimonials and interactive elements
+- **Custom Sign-Up Page** with animated stats and quick setup steps
+- **Enhanced CSS** with mobile-first responsive design
+- **Gradient Themes** and smooth animations throughout
+- **Accessibility Improvements** with proper focus states and keyboard navigation
+- **Performance Optimizations** including will-change properties and smooth transitions
+
+## 🛠 Technology Stack
+>>>>>>> origin/main
 
 ### Frontend
 - **Next.js 14.2.3** - React framework with App Router
