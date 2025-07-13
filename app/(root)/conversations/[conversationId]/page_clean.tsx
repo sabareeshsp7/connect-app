@@ -22,7 +22,6 @@ type Props = {
 
 const ConversationPage = ({ params: { conversationId } }: Props) => {
   const conversation = useQuery(api.conversation.get, { id: conversationId });
-  const messages = useQuery(api.messages.get, { id: conversationId });
 
   const [removeFriendDialogOpen, setRemoveFriendDialogOpen] = useState(false);
   const [deleteGroupDialogOpen, setDeleteGroupDialogOpen] = useState(false);

@@ -18,7 +18,14 @@ const ConversationsLayout = ({ children }: Props) => {
 
   return (
     <>
-      <ItemList title="Conversations" action={<CreateGroupDialog />}>
+      <ItemList 
+        title="Conversations" 
+        action={
+          <div className="flex items-center gap-2">
+            <CreateGroupDialog />
+          </div>
+        }
+      >
         {/* Search Bar */}
         <div className="w-full mb-3">
           <SearchBar

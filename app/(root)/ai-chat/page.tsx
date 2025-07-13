@@ -104,8 +104,8 @@ const AIChatPage = () => {
 
   return (
     <div className="flex flex-col h-full w-full">
-      {/* Mobile and Desktop responsive card with proper mobile nav spacing */}
-      <Card className="flex-1 flex flex-col h-[calc(100vh-240px)] lg:h-full max-h-[calc(100vh-240px)] lg:max-h-full m-2 lg:m-0">
+      {/* AI Chat Card with proper mobile spacing */}
+      <Card className="flex-1 flex flex-col h-[calc(100vh-160px)] lg:h-full max-h-[calc(100vh-160px)] lg:max-h-full m-0 lg:m-0 overflow-hidden">
         {/* Header */}
         <div className="flex items-center gap-3 p-3 lg:p-4 border-b flex-shrink-0">
           <Avatar className="h-8 w-8 lg:h-10 lg:w-10">
@@ -121,9 +121,9 @@ const AIChatPage = () => {
           </div>
         </div>
 
-        {/* Messages - Scrollable area */}
+        {/* Messages - Scrollable area with safe area for mobile */}
         <ScrollArea className="flex-1 p-3 lg:p-4 min-h-0">
-          <div className="space-y-3 lg:space-y-4 pb-6 lg:pb-4">
+          <div className="space-y-3 lg:space-y-4 pb-20 lg:pb-4">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -178,22 +178,22 @@ const AIChatPage = () => {
           <div ref={messagesEndRef} />
         </ScrollArea>
 
-        {/* Input - Fixed at bottom with proper spacing for mobile nav */}
-        <div className="p-3 lg:p-4 border-t flex-shrink-0 bg-background/95 backdrop-blur-sm">
+        {/* Input - Fixed at bottom with proper mobile safe area */}
+        <div className="p-3 lg:p-4 border-t flex-shrink-0 bg-background/95 backdrop-blur-sm sticky bottom-0">
           <form onSubmit={sendMessage} className="flex gap-2">
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               placeholder="Type your message..."
               disabled={isLoading}
-              className="flex-1 text-sm lg:text-base h-9 lg:h-10"
+              className="flex-1 text-sm lg:text-base h-10 lg:h-10"
             />
             <Button 
               type="submit" 
               disabled={isLoading || !inputMessage.trim()}
-              className="h-9 w-9 lg:h-10 lg:w-10 p-0 flex-shrink-0"
+              className="h-10 w-10 lg:h-10 lg:w-10 p-0 flex-shrink-0"
             >
-              <Send className="h-3 w-3 lg:h-4 lg:w-4" />
+              <Send className="h-4 w-4 lg:h-4 lg:w-4" />
             </Button>
           </form>
         </div>

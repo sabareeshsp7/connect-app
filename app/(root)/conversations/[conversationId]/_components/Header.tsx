@@ -23,7 +23,11 @@ type Props = {
   // setCallType: Dispatch<SetStateAction<"audio" | "video" | null>>;
 };
 
-const Header = ({ imageUrl, name, options}: Props) => {
+const Header = ({ 
+  imageUrl, 
+  name, 
+  options
+}: Props) => {
   return (
     <Card className="w-full flex rounded-lg items-center p-2 justify-between">
       <div className="flex items-center gap-2">

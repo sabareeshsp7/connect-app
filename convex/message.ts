@@ -7,6 +7,9 @@ export const create = mutation({
     conversationId: v.id("conversations"),
     type: v.string(),
     content: v.array(v.string()),
+    replyToMessageId: v.optional(v.id("messages")),
+    replyToSenderName: v.optional(v.string()),
+    replyToContent: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -30,7 +33,8 @@ export const create = mutation({
         q
           .eq("memberId", currentUser._id)
           .eq("conversationId", args.conversationId)
-      );
+      )
+      .first();
 
     if (!membership) {
       throw new ConvexError("You aren't a member of this conversation");

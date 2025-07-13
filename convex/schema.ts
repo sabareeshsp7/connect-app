@@ -42,5 +42,8 @@ export default defineSchema({
     conversationId: v.id("conversations"),
     type: v.string(),
     content: v.array(v.string()),
+    replyToMessageId: v.optional(v.id("messages")),
+    replyToSenderName: v.optional(v.string()),
+    replyToContent: v.optional(v.string()),
   }).index("by_conversationId", ["conversationId"]),
 });

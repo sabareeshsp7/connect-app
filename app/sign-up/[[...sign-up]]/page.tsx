@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 
 const SignUpPage = () => {
   return (
-    <div className="auth-page-container auth-full-height auth-container-safe bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="light auth-page-container auth-full-height auth-container-safe bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-100">
       <div className="auth-content-wrapper auth-content-safe auth-container-mobile">
         <div className="auth-grid-safe auth-grid-responsive grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto auth-container-large">
           
@@ -167,11 +167,11 @@ const SignUpPage = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-3xl blur-3xl -z-10 transform -rotate-3"></div>
               
               {/* Sign Up Container */}
-              <Card className="p-8 shadow-2xl border-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm">
+              <Card className="p-8 shadow-2xl border-0 bg-white/95 backdrop-blur-sm">
                 <div className="text-center mb-8">
-                  <div className="inline-flex items-center gap-2 p-3 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/50 dark:to-blue-900/50 rounded-full mb-4">
+                  <div className="inline-flex items-center gap-2 p-3 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full mb-4">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm text-purple-700 dark:text-purple-300 font-medium">Join Connect today!</span>
+                    <span className="text-sm text-purple-700 font-medium">Join Connect today!</span>
                   </div>
                   <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
                     Create Your Account
@@ -184,20 +184,20 @@ const SignUpPage = () => {
                 {/* Quick Benefits */}
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   <div className="text-center">
-                    <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <MessageCircle className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <MessageCircle className="h-5 w-5 text-purple-600" />
                     </div>
                     <p className="text-xs text-muted-foreground">Instant chat</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Bot className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Bot className="h-5 w-5 text-purple-600" />
                     </div>
                     <p className="text-xs text-muted-foreground">AI helper</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Shield className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Shield className="h-5 w-5 text-purple-600" />
                     </div>
                     <p className="text-xs text-muted-foreground">Secure</p>
                   </div>
@@ -207,15 +207,16 @@ const SignUpPage = () => {
                 <div className="flex justify-center">
                   <SignUp 
                     appearance={{
+                      baseTheme: undefined,
                       elements: {
                         rootBox: "w-full",
                         card: "shadow-none border-0 bg-transparent",
                         headerTitle: "hidden",
                         headerSubtitle: "hidden",
-                        socialButtonsBlockButton: "border-2 hover:border-primary/50 transition-all duration-300 h-12",
+                        socialButtonsBlockButton: "border-2 hover:border-primary/50 transition-all duration-300 h-12 bg-white text-gray-700",
                         formButtonPrimary: "bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition-all duration-300 h-12",
                         footerActionLink: "text-primary hover:text-primary/80",
-                        formFieldInput: "h-12"
+                        formFieldInput: "h-12 bg-white border-gray-200"
                       }
                     }}
                     forceRedirectUrl="/conversations"
@@ -245,10 +246,10 @@ const SignUpPage = () => {
                 </div>
 
                 {/* Existing User CTA */}
-                <div className="text-center mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-xl">
+                <div className="text-center mt-6 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl">
                   <p className="text-sm text-muted-foreground">
                     Already have an account?{' '}
-                    <a href="/sign-in" className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 font-medium underline">
+                    <a href="/sign-in" className="text-purple-600 hover:text-purple-700 font-medium underline">
                       Sign in here
                     </a>
                   </p>
