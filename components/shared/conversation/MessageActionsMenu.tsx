@@ -15,9 +15,44 @@ import {
   Share,
   Info,
   MoreHorizontal,
-  Trash2,
-  Edit
+  Trash2
 } from "lucide-react";
+
+// Gemini-style AI Icon Component
+const GeminiAIIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={`${className}`}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="geminiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#4285f4" />
+        <stop offset="33%" stopColor="#9c27b0" />
+        <stop offset="66%" stopColor="#ff9800" />
+        <stop offset="100%" stopColor="#f44336" />
+      </linearGradient>
+    </defs>
+    {/* Main Gemini sparkle shape */}
+    <path
+      d="M12 2.5L14.5 8.5L20.5 11L14.5 13.5L12 19.5L9.5 13.5L3.5 11L9.5 8.5L12 2.5Z"
+      fill="url(#geminiGradient)"
+      className="animate-[pulse_2s_ease-in-out_infinite] opacity-90"
+    />
+    {/* Inner sparkle */}
+    <circle 
+      cx="12" 
+      cy="11" 
+      r="1.5" 
+      fill="white" 
+      className="animate-[pulse_1.5s_ease-in-out_infinite] [animation-delay:0.5s]"
+    />
+    {/* Small accent sparkles */}
+    <circle cx="8" cy="7" r="0.8" fill="#4285f4" opacity="0.7" />
+    <circle cx="16" cy="15" r="0.8" fill="#ff9800" opacity="0.7" />
+  </svg>
+);
 import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
@@ -45,8 +80,6 @@ const MessageActionsMenu = ({
   onInfo,
   onAIReply
 }: MessageActionsMenuProps) => {
-  const [showPinDialog, setShowPinDialog] = useState(false);
-
   const handleCopy = () => {
     const textContent = Array.isArray(content) ? content.join(' ') : String(content);
     navigator.clipboard.writeText(textContent);
@@ -112,11 +145,11 @@ const MessageActionsMenu = ({
       <Button
         variant="ghost"
         size="sm"
-        className="h-8 w-8 p-0 hover:bg-blue-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+        className="h-7 w-7 md:h-8 md:w-8 p-0 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 hover:scale-110 active:scale-95"
         onClick={handleAIMessage}
         title="AI Suggestion"
       >
-        <Edit className="h-4 w-4 text-blue-600" />
+        <GeminiAIIcon className="h-3.5 w-3.5 md:h-4 md:w-4" />
       </Button>
 
       {/* Main Actions Menu */}
@@ -125,9 +158,9 @@ const MessageActionsMenu = ({
           <Button
             variant="ghost"
             size="sm"
-            className="h-8 w-8 p-0 hover:bg-gray-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+            className="h-7 w-7 md:h-8 md:w-8 p-0 hover:bg-gray-100 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-200"
           >
-            <MoreHorizontal className="h-4 w-4" />
+            <MoreHorizontal className="h-3.5 w-3.5 md:h-4 md:w-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">

@@ -7,10 +7,6 @@ import { Id } from '@/convex/_generated/dataModel';
 
 interface MessageState {
   messageId: string;
-  isStarred: boolean;
-  isPinned: boolean;
-  pinDuration?: number; // -1 for forever, positive number for days
-  pinnedAt?: number; // timestamp when pinned
   isSelected: boolean;
   reactions: string[];
 }
@@ -24,35 +20,10 @@ export const useMessageActions = () => {
     const id = String(messageId);
     return messageStates[id] || {
       messageId: id,
-      isStarred: false,
-      isPinned: false,
       isSelected: false,
       reactions: [],
     };
   }, [messageStates]);
-
-  const toggleStar = useCallback((messageId: string) => {
-    setMessageStates(prev => {
-      const current = prev[messageId] || getMessageState(messageId);
-      const newState = { ...current, isStarred: !current.isStarred };
-      toast.success(newState.isStarred ? 'Message starred' : 'Message unstarred');
-      return { ...prev, [messageId]: newState };
-    });
-  }, [getMessageState]);
-
-  const togglePin = useCallback((messageId: string, duration?: number) => {
-    setMessageStates(prev => {
-      const current = prev[messageId] || getMessageState(messageId);
-      const newState = { 
-        ...current, 
-        isPinned: !current.isPinned,
-        pinDuration: !current.isPinned ? duration : undefined,
-        pinnedAt: !current.isPinned ? Date.now() : undefined
-      };
-      toast.success(newState.isPinned ? 'Message pinned' : 'Message unpinned');
-      return { ...prev, [messageId]: newState };
-    });
-  }, [getMessageState]);
 
   const addReaction = useCallback((messageId: string, emoji: string) => {
     setMessageStates(prev => {
@@ -95,12 +66,6 @@ export const useMessageActions = () => {
     toast.success('Reply mode activated');
   }, [setReplyMessage]);
 
-  const handleForward = useCallback((messageId: string, content: string) => {
-    toast.success('Forward feature - opening contact selector');
-    console.log('Forward message:', { messageId, content });
-    // This would typically open a contact/conversation selector
-  }, []);
-
   const handleDelete = useCallback((messageId: string) => {
     toast.success('Delete feature - message would be deleted');
     console.log('Delete message:', messageId);
@@ -132,11 +97,8 @@ export const useMessageActions = () => {
     setMessageStates,
     selectedMessages,
     getMessageState,
-    toggleStar,
-    togglePin,
     toggleSelect,
     handleReply,
-    handleForward,
     handleDelete,
     handleInfo,
     clearSelection,

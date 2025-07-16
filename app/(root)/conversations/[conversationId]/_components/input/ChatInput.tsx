@@ -23,7 +23,7 @@ import {
 import { useConversation } from "@/hooks/useConversation";
 import MessageActionsPopover from "./MessageActionsPopover";
 import { useTheme } from "next-themes";
-import EmojiPicker, { Theme } from "emoji-picker-react";
+
 import MessageConfirmationDialog from "@/components/shared/conversation/MessageConfirmationDialog";
 import ReplyPreview from "@/components/shared/conversation/ReplyPreview";
 import { useReply } from "@/hooks/useReply";
@@ -42,10 +42,7 @@ const ChatInput: FC<ChatInputProps> = ({
   aiSuggestion,
   onAISuggestionUsed
 }) => {
-  const emojiPickerRef = useRef<any>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
-  const [cursorPosition, setCursorPosition] = useState(0);
   
   // Confirmation dialog state
   const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
@@ -62,22 +59,6 @@ const ChatInput: FC<ChatInputProps> = ({
   const { mutate: createMessage, pending } = useMutationState(
     api.message.create
   );
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        emojiPickerRef.current &&
-        !emojiPickerRef.current.contains(event.target)
-      ) {
-        setEmojiPickerOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   const form = useForm<z.infer<typeof chatMessageSchema>>({
     resolver: zodResolver(chatMessageSchema),
@@ -143,26 +124,6 @@ const ChatInput: FC<ChatInputProps> = ({
     // Keep the message in the input for manual editing
   };
 
-  const handleInputChange = (event: any) => {
-    const { value, selectionStart } = event.target;
-    if (selectionStart !== null) {
-      form.setValue("content", value);
-      setCursorPosition(selectionStart);
-    }
-  };
-
-  const insertEmoji = (emoji: string) => {
-    const newText = [
-      content.substring(0, cursorPosition),
-      emoji,
-      content.substring(cursorPosition),
-    ].join("");
-
-    form.setValue("content", newText);
-
-    setCursorPosition(cursorPosition + emoji.length);
-  };
-
   const handleSubmit = async (values: z.infer<typeof chatMessageSchema>) => {
     try {
       console.log('Attempting to send message:', {
@@ -211,7 +172,7 @@ const ChatInput: FC<ChatInputProps> = ({
       {/* Reply Preview */}
       <ReplyPreview />
       
-      <Card className="w-full p-2 rounded-lg relative">
+      <Card className="w-full p-3 lg:p-3 rounded-none lg:rounded-xl relative border-0 lg:border shadow-sm">
       {/* Message Confirmation Dialog */}
       <MessageConfirmationDialog
         isOpen={showConfirmationDialog}
@@ -222,24 +183,13 @@ const ChatInput: FC<ChatInputProps> = ({
         onEdit={handleEditSuggestion}
       />
       
-      <div className="absolute bottom-16" ref={emojiPickerRef}>
-        <EmojiPicker
-          open={emojiPickerOpen}
-          theme={theme as Theme}
-          onEmojiClick={(emojiDetails) => {
-            insertEmoji(emojiDetails.emoji);
-            setEmojiPickerOpen(false);
-          }}
-          lazyLoadEmojis
-        />
-      </div>
-      <div className="flex gap-2 items-end w-full">
-        <MessageActionsPopover setEmojiPickerOpen={setEmojiPickerOpen} />
+      <div className="flex gap-2 lg:gap-2 items-end w-full">
+        <MessageActionsPopover />
         
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
-            className="flex gap-2 items-end w-full"
+            className="flex gap-1 lg:gap-2 items-end w-full"
           >
             <FormField
               control={form.control}
@@ -261,10 +211,8 @@ const ChatInput: FC<ChatInputProps> = ({
                         field.ref(el);
                         textareaRef.current = el;
                       }}
-                      onChange={handleInputChange}
-                      onClick={handleInputChange}
                       placeholder="Type a message..."
-                      className="min-h-full w-full resize-none border-0 outline-0 bg-card text-card-foreground placeholder:text-muted-foreground p-1.5"
+                      className="min-h-full w-full resize-none border-0 outline-0 bg-card text-card-foreground placeholder:text-muted-foreground p-2 lg:p-2.5 text-sm lg:text-base"
                     />
                   </FormControl>
                   <FormMessage />

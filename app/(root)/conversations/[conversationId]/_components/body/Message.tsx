@@ -44,11 +44,8 @@ const Message = ({
 }: Props) => {
   const {
     getMessageState,
-    toggleStar,
-    togglePin,
     toggleSelect,
     handleReply,
-    handleForward,
     handleDelete,
     handleInfo,
     addReaction,
@@ -61,20 +58,17 @@ const Message = ({
   };
 
   return (
-    <div
-      className={cn("flex w-full py-1 px-3 group hover:bg-gray-50/50 transition-colors", {
-        "justify-end pl-16": fromCurrentUser, // Sent messages: align right with left padding
-        "justify-start pr-16": !fromCurrentUser, // Received messages: align left with right padding
-        "bg-blue-50/30": messageState.isSelected,
-      })}
-    >
-      <div className={cn("flex items-end gap-3 max-w-[75%]", {
-        "flex-row-reverse": fromCurrentUser, // Sent: avatar on right, message on left
-        "flex-row": !fromCurrentUser, // Received: avatar on left, message on right
+    <div className={cn("flex w-full group px-2 py-1", {
+      "justify-end": fromCurrentUser,
+      "justify-start": !fromCurrentUser,
+    })}>
+      <div className={cn("flex items-end gap-1 max-w-[85%] md:max-w-[75%]", {
+        "flex-row-reverse": fromCurrentUser,
+        "flex-row": !fromCurrentUser,
       })}>
         {/* Avatar */}
         <Avatar
-          className={cn("w-8 h-8 flex-shrink-0", {
+          className={cn("w-6 h-6 md:w-8 md:h-8 flex-shrink-0", {
             invisible: lastByUser,
           })}
         >
@@ -84,47 +78,22 @@ const Message = ({
           </AvatarFallback>
         </Avatar>
 
-        {/* Message Content Container */}
-        <div className={cn("flex flex-col min-w-0 flex-1", {
-          "items-end": fromCurrentUser, // Sent messages align content to right
-          "items-start": !fromCurrentUser, // Received messages align content to left
-        })}>
-          {/* Message Status Indicators */}
-          {(messageState.isStarred || messageState.isPinned) && (
-            <div className={cn("flex gap-1 mb-1", {
-              "justify-end": fromCurrentUser,
-              "justify-start": !fromCurrentUser,
-            })}>
-              {messageState.isStarred && (
-                <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">
-                  ⭐ Starred
-                </Badge>
-              )}
-              {messageState.isPinned && (
-                <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-800">
-                  📌 Pinned
-                </Badge>
-              )}
-            </div>
-          )}
-
+        {/* Message Content */}
+        <div className="flex flex-col min-w-0 flex-1">
           {/* Message Bubble with Actions */}
-          <div className={cn("flex items-end gap-2 w-full", {
-            "flex-row-reverse": fromCurrentUser, // Sent: actions on left, message on right
-            "flex-row": !fromCurrentUser, // Received: message on left, actions on right
+          <div className={cn("flex items-end gap-1", {
+            "flex-row-reverse": fromCurrentUser,
+            "flex-row": !fromCurrentUser,
           })}>
             {/* Main Message Bubble */}
             <div
-              className={cn("px-4 py-3 rounded-2xl relative shadow-sm min-w-0", {
+              className={cn("px-3 py-2 md:px-4 md:py-3 rounded-2xl relative shadow-sm min-w-0 max-w-full", {
                 // Sent messages styling
                 "bg-blue-500 text-white": fromCurrentUser,
                 "rounded-br-md": !lastByUser && fromCurrentUser,
                 // Received messages styling
                 "bg-white text-gray-900 border border-gray-200": !fromCurrentUser,
                 "rounded-bl-md": !lastByUser && !fromCurrentUser,
-                // Selection and state borders
-                "ring-2 ring-yellow-400 ring-opacity-50": messageState.isStarred,
-                "ring-2 ring-blue-400 ring-opacity-50": messageState.isPinned && !messageState.isStarred,
               })}
             >
               {/* Reply Preview */}
@@ -161,7 +130,7 @@ const Message = ({
               {type === "image" ? <ImagePreview urls={content} /> : null}
               
               {/* Timestamp */}
-              <p className={cn("text-xs mt-2 opacity-70", {
+              <p className={cn("text-xs mt-1 opacity-70", {
                 "text-white text-right": fromCurrentUser,
                 "text-gray-500 text-left": !fromCurrentUser,
               })}>
@@ -170,7 +139,7 @@ const Message = ({
             </div>
 
             {/* Message Actions Menu */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 ml-1">
               <MessageActionsMenu
                 messageId={messageId}
                 content={content}
@@ -187,14 +156,14 @@ const Message = ({
 
           {/* Reactions Display */}
           {messageState.reactions && messageState.reactions.length > 0 && (
-            <div className={cn("flex flex-wrap gap-1 mt-2", {
+            <div className={cn("flex flex-wrap gap-1 mt-1 px-1", {
               "justify-end": fromCurrentUser,
               "justify-start": !fromCurrentUser,
             })}>
               {messageState.reactions.map((reaction, index) => (
                 <span
                   key={index}
-                  className="bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-sm cursor-pointer transition-colors"
+                  className="bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-full text-xs cursor-pointer transition-colors"
                   onClick={() => toggleSelect(messageId)}
                 >
                   {reaction}
@@ -205,7 +174,7 @@ const Message = ({
 
           {/* Seen indicator */}
           {seen && (
-            <div className={cn("mt-1 text-xs", {
+            <div className={cn("mt-1 text-xs px-1", {
               "self-end": fromCurrentUser,
               "self-start": !fromCurrentUser,
             })}>

@@ -15,9 +15,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useConversation } from "@/hooks/useConversation";
 import { useMessageActions } from "@/hooks/useMessageStore";
-import BulkActionsToolbar from "@/components/shared/conversation/BulkActionsToolbar";
 import MessageInfoDialog from "@/components/shared/conversation/MessageInfoDialog";
-import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 import { toast } from "sonner";
 import { Pin } from "lucide-react";
 // import { CallRoom } from "./CallRoom";
@@ -36,7 +34,7 @@ type Props = {
 
 const Body = ({ members, onAIReply }: Props) => {
   const { conversationId } = useConversation();
-  const { selectedMessages, clearSelection, messageStates, setMessageStates, toggleStar } = useMessageActions();
+  const { messageStates, setMessageStates } = useMessageActions();
   const [infoDialogData, setInfoDialogData] = useState<{
     messageId: string;
     content: string[];
@@ -60,82 +58,6 @@ const Body = ({ members, onAIReply }: Props) => {
 
   const { mutate: markRead } = useMutationState(api.conversation.markRead);
   const { mutate: createMessage } = useMutationState(api.message.create);
-
-  // Bulk action handlers
-  const handleBulkStar = () => {
-    selectedMessages.forEach(messageId => {
-      const current = messageStates[messageId];
-      if (!current?.isStarred) {
-        setMessageStates(prev => ({
-          ...prev,
-          [messageId]: { ...prev[messageId], isStarred: true }
-        }));
-      }
-    });
-    toast.success(`Starred ${selectedMessages.length} messages`);
-    console.log('Bulk star:', selectedMessages);
-  };
-
-  const handleBulkDelete = () => {
-    // Show confirmation dialog in real implementation
-    selectedMessages.forEach(messageId => {
-      console.log('Deleting message:', messageId);
-      // This would call the delete mutation for each message
-    });
-    toast.success(`Deleted ${selectedMessages.length} messages`);
-    console.log('Bulk delete:', selectedMessages);
-    clearSelection();
-  };
-
-  const handleBulkForward = () => {
-    const messagesToForward = selectedMessages.map(messageId => {
-      const message = messages?.find(m => m.message._id === messageId);
-      return {
-        messageId,
-        content: message?.message.content || [],
-        senderName: message?.senderName || '',
-      };
-    });
-    toast.success(`Forwarding ${selectedMessages.length} messages`);
-    console.log('Bulk forward:', messagesToForward);
-    // This would open a conversation selector
-  };
-
-  const handleBulkCopy = () => {
-    const messagesToCopy = selectedMessages.map(messageId => {
-      const message = messages?.find(m => m.message._id === messageId);
-      return message?.message.content.join(' ') || '';
-    }).join('\n');
-    
-    navigator.clipboard.writeText(messagesToCopy);
-    toast.success(`Copied ${selectedMessages.length} messages to clipboard`);
-    console.log('Bulk copy:', messagesToCopy);
-  };
-
-  const handleBulkDownload = () => {
-    const messagesToDownload = selectedMessages.map(messageId => {
-      const message = messages?.find(m => m.message._id === messageId);
-      return {
-        id: messageId,
-        content: message?.message.content || [],
-        sender: message?.senderName || '',
-        timestamp: message?.message._creationTime || 0,
-      };
-    });
-    
-    // Create a downloadable file
-    const dataStr = JSON.stringify(messagesToDownload, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `messages-${new Date().toISOString().split('T')[0]}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
-    
-    toast.success(`Downloaded ${selectedMessages.length} messages`);
-    console.log('Bulk download:', messagesToDownload);
-  };
 
   const handleShowMessageInfo = (messageId: string) => {
     const message = messages?.find(m => m.message._id === messageId);
@@ -161,8 +83,6 @@ const Body = ({ members, onAIReply }: Props) => {
         senderImage: message.senderImage,
         createdAt: message.message._creationTime,
         type: message.message.type,
-        isStarred: messageState?.isStarred,
-        isPinned: messageState?.isPinned,
         replyToMessageId: message.message.replyToMessageId,
         replyToSenderName: message.message.replyToSenderName,
         replyToContent: message.message.replyToContent,
@@ -184,27 +104,6 @@ const Body = ({ members, onAIReply }: Props) => {
       console.log('AI Suggestion:', aiResponse);
     }
   };
-
-  // Keyboard shortcuts
-  useKeyboardShortcuts({
-    onCopy: selectedMessages.length > 0 ? handleBulkCopy : undefined,
-    onDelete: selectedMessages.length > 0 ? handleBulkDelete : undefined,
-    onSelectAll: () => {
-      if (messages) {
-        messages.forEach(({ message }) => {
-          if (!messageStates[message._id]?.isSelected) {
-            setMessageStates(prev => ({
-              ...prev,
-              [message._id]: { ...prev[message._id], isSelected: true }
-            }));
-          }
-        });
-        toast.success(`Selected all ${messages.length} messages`);
-      }
-    },
-    onClearSelection: selectedMessages.length > 0 ? clearSelection : undefined,
-    onEscape: selectedMessages.length > 0 ? clearSelection : () => setInfoDialogData(null),
-  });
 
   useEffect(() => {
     if (messages && messages.length > 0) {
@@ -260,23 +159,6 @@ const Body = ({ members, onAIReply }: Props) => {
     return formatSeenBy(seenUsers);
   };
 
-  // Separate pinned and regular messages
-  const organizeMessages = () => {
-    if (!messages) return { pinnedMessages: [], regularMessages: [] };
-    
-    const pinnedMessages = messages.filter(({ message }) => 
-      messageStates[message._id]?.isPinned
-    );
-    
-    const regularMessages = messages.filter(({ message }) => 
-      !messageStates[message._id]?.isPinned
-    );
-    
-    return { pinnedMessages, regularMessages };
-  };
-
-  const { pinnedMessages, regularMessages } = organizeMessages();
-
   const renderMessage = (messageData: any, index: number, messageArray: any[]) => {
     const { message, senderImage, senderName, isCurrentUser } = messageData;
     const lastByUser = 
@@ -313,40 +195,12 @@ const Body = ({ members, onAIReply }: Props) => {
         messageData={infoDialogData}
       />
       
-      <div className="flex-1 w-full flex overflow-y-scroll flex-col-reverse gap-1 p-4 no-scrollbar bg-gray-50/30">
-        {/* Regular Messages (in reverse order as usual) */}
-        {regularMessages?.map(
-          (messageData, index, messageArray) => renderMessage(messageData, index, messageArray)
-        )}
-        
-        {/* Pinned Messages Separator */}
-        {pinnedMessages.length > 0 && regularMessages.length > 0 && (
-          <div className="flex items-center gap-4 py-3 my-2">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
-            <div className="text-xs text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 flex items-center gap-1">
-              <Pin className="h-3 w-3" />
-              Pinned Messages
-            </div>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent"></div>
-          </div>
-        )}
-        
-        {/* Pinned Messages (at the top, but rendered here due to flex-col-reverse) */}
-        {pinnedMessages?.map(
+      <div className="flex-1 w-full flex overflow-y-scroll flex-col-reverse gap-0.5 md:gap-1 p-1 md:p-3 no-scrollbar bg-gray-50/30">
+        {/* Messages */}
+        {messages?.map(
           (messageData, index, messageArray) => renderMessage(messageData, index, messageArray)
         )}
       </div>
-      
-      {/* Bulk Actions Toolbar */}
-      <BulkActionsToolbar
-        selectedCount={selectedMessages.length}
-        onClearSelection={clearSelection}
-        onBulkStar={handleBulkStar}
-        onBulkDelete={handleBulkDelete}
-        onBulkForward={handleBulkForward}
-        onBulkCopy={handleBulkCopy}
-        onBulkDownload={handleBulkDownload}
-      />
     </>
   );
 };
