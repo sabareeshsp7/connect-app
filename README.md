@@ -1,6 +1,5 @@
 # Connect Chat Application 💬
 
-<<<<<<< HEAD
 A modern, real-time chat application built with Next.js, Convex, and Clerk authentication. Connect with friends, create groups, and enjoy AI-powered conversations.
 =======
 # Connect💬- Real-Time Communication
