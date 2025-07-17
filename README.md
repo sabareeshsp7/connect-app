@@ -9,7 +9,6 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 - **Video Playback** with controls
 - **File Download** capabilities
 - **Drag & Drop** file uploads
->>>>>>> origin/main
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-14.2.3-black.svg)
@@ -66,7 +65,6 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 - **Error Resolution** - Fixed reply functionality and validation errors
 - **Mobile Optimization** - Better performance on mobile devices
 
-<<<<<<< HEAD
 ### User Experience Improvements ✅
 - **Intuitive Message Actions** - Reply, Copy, Share, Info, AI Reply, Delete
 - **Real-time Status Updates** - Live delivery and read receipts
@@ -151,7 +149,6 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 - **Performance Optimizations** including will-change properties and smooth transitions
 
 ## 🛠 Technology Stack
->>>>>>> origin/main
 
 ### Frontend
 - **Next.js 14.2.3** - React framework with App Router
