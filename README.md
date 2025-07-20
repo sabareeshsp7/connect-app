@@ -1,8 +1,7 @@
 # Connect Chat Application 💬
 
 A modern, real-time chat application built with Next.js, Convex, and Clerk authentication. Connect with friends, create groups, and enjoy AI-powered conversations.
-=======
-# Connect💬- Real-Time Communication
+
 - **Instant Messaging** with Rich Media Support
 - **File Uploads** (images, videos, PDFs, audio)
 - **Image Preview** with full-screen view
@@ -59,7 +58,6 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 ## 🚀 Recent Updates & Optimizations
 
 ### Message Actions Overhaul ✅
-- **Streamlined Actions Menu** - Removed cluttered features (Forward, Pin, Star, Select, Emoji picker)
 - **Enhanced Info Dialog** - Shows meaningful read status instead of technical IDs
 - **AI Reply Integration** - Easy access to AI-powered responses with animated Gemini icon
 - **Clean Interface** - Focused on essential messaging features
@@ -93,8 +91,6 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 - **Better Error Handling** - User-friendly error messages and feedback
 - **Smooth Reply System** - Fixed reply validation and message sending
 
-## 🛠 Tech Stack
-=======
 ### Social Features
 - **Friend System** with request/accept flow
 - **User Discovery** by email address
@@ -133,7 +129,6 @@ A modern, real-time chat application built with Next.js, Convex, and Clerk authe
 - **Auto-scroll** for smooth conversation flow
 - **Loading Indicators** for AI thinking states
 - **Error Handling** with user-friendly messages
-## 🆕 Recent Updates
 
 ### AI Chat Integration
 - Added **Google Gemini-powered AI Assistant** accessible from the sidebar
