@@ -5,6 +5,7 @@ import React from "react";
 import { Bot, MessageCircle, Shield, Zap, Users, Star, CheckCircle, Clock, Globe } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getRedirectUrl } from "@/lib/url-utils";
 
 const SignUpPage = () => {
   return (
@@ -42,7 +43,7 @@ const SignUpPage = () => {
               <div className="flex flex-wrap gap-3 justify-center lg:justify-start pt-4 mobile-stats">
                 <Badge className="auth-badge-responsive mobile-badge-small px-4 py-2 bg-secondary text-secondary-foreground">
                   <Users className="h-4 w-4 mr-2" />
-                  10K+ Users
+                  10+ Users
                 </Badge>
                 <Badge className="auth-badge-responsive mobile-badge-small px-4 py-2 bg-secondary text-secondary-foreground">
                   <Globe className="h-4 w-4 mr-2" />
@@ -219,8 +220,8 @@ const SignUpPage = () => {
                         formFieldInput: "h-12 bg-white border-gray-200"
                       }
                     }}
-                    forceRedirectUrl="/conversations"
-                    signInUrl="/sign-in"
+                    forceRedirectUrl={getRedirectUrl("/conversations")}
+                    signInUrl={getRedirectUrl("/sign-in")}
                   />
                 </div>
 

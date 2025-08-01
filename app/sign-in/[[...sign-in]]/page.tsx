@@ -5,6 +5,7 @@ import React from "react";
 import { Bot, MessageCircle, Shield, Zap, Users, Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getRedirectUrl } from "@/lib/url-utils";
 
 const SignInPage = () => {
   return (
@@ -210,8 +211,8 @@ const SignInPage = () => {
                         formFieldInput: "h-12 bg-white border-gray-200"
                       }
                     }}
-                    forceRedirectUrl="/conversations"
-                    signUpUrl="/sign-up"
+                    forceRedirectUrl={getRedirectUrl("/conversations")}
+                    signUpUrl={getRedirectUrl("/sign-up")}
                   />
                 </div>
 
