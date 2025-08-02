@@ -24,7 +24,7 @@ export const cleanupDuplicateUsers = internalMutation({
     let duplicatesRemoved = 0;
     
     // Process each group of users with the same clerkId
-    for (const [clerkId, users] of usersByClerkId) {
+    for (const [clerkId, users] of Array.from(usersByClerkId.entries())) {
       if (users.length > 1) {
         duplicatesFound += users.length - 1;
         console.log(`Found ${users.length} users with clerkId: ${clerkId}`);
@@ -63,7 +63,7 @@ export const cleanupDuplicateUsers = internalMutation({
     
     let usernameConflicts = 0;
     
-    for (const [username, users] of usersByUsername) {
+    for (const [username, users] of Array.from(usersByUsername.entries())) {
       if (users.length > 1) {
         console.log(`Found ${users.length} users with username: ${username}`);
         
