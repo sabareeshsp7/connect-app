@@ -124,11 +124,11 @@ const SignInPage = () => {
             </div>
 
             {/* Testimonial */}
-            <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700 border-2 border-blue-200 dark:border-blue-800">
+            <Card className="p-6 bg-gradient-to-r from-white to-blue-50 border border-blue-100 shadow-md">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                    SJ
+                    SS
                   </div>
                 </div>
                 <div className="flex-1">
@@ -139,11 +139,11 @@ const SignInPage = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-foreground mb-2 italic">
+                  <p className="text-gray-800 mb-2 italic">
                     &ldquo;Connect has revolutionized how our team communicates. The AI assistant is incredibly helpful!&rdquo;
                   </p>
-                  <div className="text-sm text-muted-foreground">
-                    <span className="font-semibold">Sarah Johnson</span>
+                  <div className="text-sm text-gray-600">
+                    <span className="font-semibold">Sabareesh S P</span>
                     <span className="mx-2">•</span>
                     <span>Product Manager</span>
                   </div>

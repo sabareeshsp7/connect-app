@@ -7,9 +7,35 @@ export default defineSchema({
     imageUrl: v.string(),
     clerkId: v.string(),
     email: v.string(),
+    // Additional fields for enhanced profile management
+    firstName: v.optional(v.string()),
+    lastName: v.optional(v.string()),
+    phoneNumber: v.optional(v.string()),
+    // Track authentication providers used
+    authProviders: v.optional(v.array(v.string())), // ["google", "github", "email", "phone", "username"]
+    // Profile completion and verification status
+    emailVerified: v.optional(v.boolean()),
+    phoneVerified: v.optional(v.boolean()),
+    profileComplete: v.optional(v.boolean()),
+    // User preferences and settings
+    preferences: v.optional(v.object({
+      theme: v.optional(v.string()),
+      notifications: v.optional(v.boolean()),
+      language: v.optional(v.string()),
+    })),
+    // Timestamps for better user management
+    createdAt: v.optional(v.number()),
+    updatedAt: v.optional(v.number()),
+    lastLoginAt: v.optional(v.number()),
   })
     .index("by_email", ["email"])
-    .index("by_clerkId", ["clerkId"]),
+    .index("by_clerkId", ["clerkId"])
+    .index("by_phoneNumber", ["phoneNumber"])
+    .index("by_username", ["username"]) // Add username index for uniqueness checks
+    .searchIndex("search_username", {
+      searchField: "username",
+      filterFields: ["email"]
+    }),
   requests: defineTable({
     sender: v.id("users"),
     receiver: v.id("users"),

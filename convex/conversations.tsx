@@ -8,8 +8,9 @@ export const get = query({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
+    // Return empty array if user is not authenticated
     if (!identity) {
-      throw new Error("Unauthorized");
+      return [];
     }
 
     const currentUser = await getUserByClerkId({
@@ -17,8 +18,9 @@ export const get = query({
       clerkId: identity.subject,
     });
 
+    // Return empty array if user not found
     if (!currentUser) {
-      throw new ConvexError("User not found");
+      return [];
     }
 
     const conversationMemberships = await ctx.db

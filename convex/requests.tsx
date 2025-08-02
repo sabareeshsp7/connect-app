@@ -7,8 +7,9 @@ export const get = query({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
+    // Return empty array if user is not authenticated
     if (!identity) {
-      throw new Error("Unauthorized");
+      return [];
     }
 
     const currentUser = await getUserByClerkId({
@@ -16,8 +17,9 @@ export const get = query({
       clerkId: identity.subject,
     });
 
+    // Return empty array if user not found
     if (!currentUser) {
-      throw new ConvexError("User not found");
+      return [];
     }
 
     const requests = await ctx.db
@@ -49,8 +51,9 @@ export const count = query({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
+    // Return 0 if user is not authenticated instead of throwing error
     if (!identity) {
-      throw new Error("Unauthorized");
+      return 0;
     }
 
     const currentUser = await getUserByClerkId({
@@ -58,8 +61,9 @@ export const count = query({
       clerkId: identity.subject,
     });
 
+    // Return 0 if user not found instead of throwing error
     if (!currentUser) {
-      throw new ConvexError("User not found");
+      return 0;
     }
 
     const requests = await ctx.db

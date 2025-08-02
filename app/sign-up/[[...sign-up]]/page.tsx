@@ -43,7 +43,7 @@ const SignUpPage = () => {
               <div className="flex flex-wrap gap-3 justify-center lg:justify-start pt-4 mobile-stats">
                 <Badge className="auth-badge-responsive mobile-badge-small px-4 py-2 bg-secondary text-secondary-foreground">
                   <Users className="h-4 w-4 mr-2" />
-                  10+ Users
+                  50+ Users
                 </Badge>
                 <Badge className="auth-badge-responsive mobile-badge-small px-4 py-2 bg-secondary text-secondary-foreground">
                   <Globe className="h-4 w-4 mr-2" />
@@ -124,27 +124,27 @@ const SignUpPage = () => {
             </div>
 
             {/* Benefits */}
-            <Card className="p-6 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 border-2 border-purple-200 dark:border-purple-800">
+            <Card className="p-6 bg-gradient-to-r from-white to-green-50 border border-green-100 shadow-md">
               <div className="space-y-3">
-                <h3 className="text-lg font-semibold text-foreground">
+                <h3 className="text-lg font-semibold text-gray-800">
                   Why Choose Connect?
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm text-foreground">100% Free to use</span>
+                    <span className="text-sm text-gray-700">100% Free to use</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm text-foreground">No ads or tracking</span>
+                    <span className="text-sm text-gray-700">No ads or tracking</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm text-foreground">Cross-platform sync</span>
+                    <span className="text-sm text-gray-700">Cross-platform sync</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
-                    <span className="text-sm text-foreground">24/7 AI assistance</span>
+                    <span className="text-sm text-gray-700">24/7 AI assistance</span>
                   </div>
                 </div>
               </div>
